@@ -2,15 +2,17 @@ package com.example.deltatask.presentation.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.deltatask.data.model.Articles
 import com.example.deltatask.databinding.ActivityMainBinding
 import com.example.deltatask.presentation.ui.adapter.NewsAdapter
 import com.example.deltatask.presentation.viewmodel.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val viewModel by lazy { ViewModelProvider(this).get(NewsViewModel::class.java) }
+    private val viewModel: NewsViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: NewsAdapter
     val items = mutableListOf<Articles>()

@@ -1,9 +1,21 @@
 package com.example.deltatask.domain.repository
 
-import com.example.deltatask.data.network.service
+import com.example.deltatask.data.network.NewsApi
+import com.example.deltatask.data.network.api_key
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-const val api_key = "90a0dea35e574f45b381e81a45bccbb5"
+@Singleton
+class DataRepository @Inject constructor(
+    private val api: NewsApi
+){
+    suspend fun getNews() = withContext(Dispatchers.IO) {
+        api.getEverything("tesla", api_key )
+    }
+     //   val list = api.getEverything("tesla", api_key)
 
-class DataRepository {
-    val list = service.getEverything("tesla", api_key)
+
+
 }
